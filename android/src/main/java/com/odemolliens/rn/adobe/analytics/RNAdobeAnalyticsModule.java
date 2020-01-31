@@ -211,31 +211,6 @@ public class RNAdobeAnalyticsModule extends ReactContextBaseJavaModule {
      @ReactMethod
      public void appendVisitorInfoForURL(final String baseURL, final Promise resolve) {
         if (isInitialized) {
-            HashMap<String, Object> mapData = new HashMap<>();
-            if (data != null) {
-                ReadableMapKeySetIterator iterator = data.keySetIterator();
-
-                while (iterator.hasNextKey()) {
-                    String key = iterator.nextKey();
-                    ReadableType type = data.getType(key);
-
-                    switch (type) {
-                        case Null:
-                            mapData.put(key, null);
-                            break;
-                        case Boolean:
-                            mapData.put(key, data.getBoolean(key));
-                            break;
-                        case Number:
-                            mapData.put(key, data.getDouble(key));
-                            break;
-                        case String:
-                            mapData.put(key, data.getString(key));
-                            break;
-                    }
-                }
-            }
-
             String updateURL = Visitor.appendToURL(baseURL);
             resolve.resolve(updateURL);
         } else {
