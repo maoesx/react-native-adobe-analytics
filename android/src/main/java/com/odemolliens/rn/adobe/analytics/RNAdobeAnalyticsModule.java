@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.adobe.mobile.Analytics;
 import com.adobe.mobile.Config;
+import com.adobe.mobile.Visitor;
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
