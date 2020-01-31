@@ -56,5 +56,19 @@ RCT_EXPORT_METHOD(trackAction:(NSString*)viewName data:(NSDictionary*)data withR
     }
 }
 
+// To pass visitor info by url
+RCT_EXPORT_METHOD(appendVisitorInfoForURL:(nonnull NSString*)baseUrl withResolver:(RCTPromiseResolveBlock)resolve 
+                  rejecter:(RCTPromiseRejectBlock)reject) 
+{
+    if (isInitialized == true) {
+        NSURL *updateURL = [ADBMobile visitorAppendToURL:[NSURL URLWithString:baseUrl]];
+        NSString* urlString = [updateURL absoluteString];
+        resolve(urlString);
+    } else {
+        NSError* error = [[NSError alloc]initWithDomain:@"react-native-adobe-analytics" code:-1001 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"message",@"Adobe is not initialized", nil]];
+        reject(@"-1002", @"Adobe is not initialized", error);
+    }
+}
+
 @end
 
